@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>page</title>
+    <link rel="stylesheet" type="text/css" href="taskagıtmakas.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+</head>
+<body>
+    <style>
+        body {
+    padding: 0;
+    margin: 0;
+    background: #ededed;
+    font-family: Verdana;
+    width:100%;
+}
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#topBox{
+    width:425px;
+    margin:0 auto;
+}
+#tas, #kagit, #makas {
+    display: block;
+    float: left;
+    width: 120px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 5%;
+    margin: 5px;
+}
+#image1 {
+    width: 100%;
+    height: 81%;
+    /* border-radius: 50%; */
+    background: url(tas.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#image2 {
+    width: 100%;
+    height: 81%;
+    background: url(kagit.png);
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+#image3 {
+    width: 100%;
+    height: 81%;
+    background: url(makas.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#tas p, #kagit p, #makas p{
+    text-align:center;
+    padding:0;
+    margin:5px;
+}
+#botBox {
+    width:800px;
+    height: 300px;
+    border: 2px solid #333;
+    margin-top:170px;
+}
+#left {
+    display: block;
+    width: 395px;
+    float: left;
+    height: 100%;
+}
+#right {
+    display: block;
+    float: right;
+    width: 395px;
+    height: 100%;
+}
+.player{
+    font-family: Verdana;
+    font-weight:bold;
+    color:#ff7c2b;
+    text-shadow:0px 0px 1px #000;
+    margin-left:100px;
+}
+#leftPhoto {
+    width: 200px;
+    height: 200px;
+    position:absolute;
+    top:250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left:50px;
+    border:2px solid #262626;
+    border-radius:20px;
+}
+#rightPhoto {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 50px;
+    border: 2px solid #262626;
+    border-radius: 20px;
+}
+.result{
+    width:200px;
+    height:50px;
+    margin:0 auto;
+    border:2px solid #262626;
+}
+.py1 {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background: #116900;
+    color: #fff;
+    line-height: 45px;
+    text-align: center;
+    font-size:24px;
+}
+.py2 {
+    float: right;
+    width: 50%;
+    height: 100%;
+    background: #7c1200;
+    color: #fff;
+    line-height: 45px;
+    text-align: center;
+    font-size: 24px;
+}
+#secim1, #secim2{
+    margin-left:125px;
+    font-family:sans-serif
+}
+    </style>
+
+    <div id="container">
+        <div id="topBox">
+            <div id="tas">
+                <p>rock</p>
+                <div id="image1"></div>
+            </div>
+            <div id="kagit">
+                <p>paper</p>
+                <div id="image2"></div>
+            </div>
+            <div id="makas">
+                <p>scissor</p>
+                <div id="image3"></div>
+            </div>
+        </div>
+        <div id="botBox">
+            <div id="left">
+                <p class="player">Player 1</p>
+                <div id="secim1"></div>
+                <div id="leftPhoto"></div>
+            </div>
+            <div id="right">
+                <p class="player">Player 2</p>
+                <div id="secim2"></div>
+                <div id="rightPhoto"></div>
+            </div>
+        </div>
+        <div class="result">
+            <div class="py1">
+                <div id="score1"></div>
+            </div>
+            <div class="py2">
+                <div id="score2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var tas = document.getElementById("tas"),
+            kagit = document.getElementById("kagit"),
+            makas = document.getElementById("makas"),
+            secim1 = document.getElementById("secim1"),
+            secim2 = document.getElementById("secim2"),
+            score1 = document.getElementById("score1"),
+            score2 = document.getElementById("score2"),
+            leftPhoto = document.getElementById("leftPhoto");
+
+        var player1 = "";
+        var player2 = "";
+        var deger = ["tas", "kağit", "makas"];
+        function skor() {
+            score1.innerHTML = player1.length;
+            score2.innerHTML = player2.length;
+            if (score1.innerHTML == 10)
+            score1.innerHTML = 0;
+
+            
+        }
+      
+    
+
+            
+        
+        function right(a) {
+            rightPhoto.style.background = "url("+a+")";
+            rightPhoto.style.backgroundSize = "cover"
+        }
+
+        tas.onclick = function () {
+            x = Math.floor(Math.random() * 3);
+            secim1.innerHTML = "rock";
+            leftPhoto.style.background = "url(tas.png)";
+            leftPhoto.style.backgroundSize = "cover"
+            if (x == 0) {
+                secim2.innerHTML = "rock";
+                right("tas.png")
+            } else if (x == 1) {
+                player2 += "1";
+                secim2.innerHTML = "paper";
+                right("kagit.png")
+            } else if (x == 2) {
+                secim2.innerHTML = "scissor";
+                player1 += "1";
+                right("makas.png")
+            }
+            skor();
+            skkor();
+        }
+
+        kagit.onclick = function () {
+            x = Math.floor(Math.random() * 3);
+            secim1.innerHTML = "paper";
+            leftPhoto.style.background = "url(kagit.png)";
+            leftPhoto.style.backgroundSize = "cover";
+            if (x == 0) {
+                secim2.innerHTML = "rock";
+                player1 += "1";
+                right("tas.png")
+            } else if (x == 1) {
+                secim2.innerHTML = "paper"
+                right("kagit.png")
+            } else if (x == 2) {
+                secim2.innerHTML = "scissor"
+                player2 += 1;
+                right("makas.png")
+            }
+            skor();
+            skkor();
+        }
+
+        makas.onclick = function () {
+            x = Math.floor(Math.random() * 3);
+            secim1.innerHTML = "scissor";
+            leftPhoto.style.background = "url(makas.png)";
+            leftPhoto.style.backgroundSize = "cover"
+            if (x == 0) {
+                secim2.innerHTML = "rock";
+                player2 += "1";
+                right("tas.png")
+            } else if (x == 1) {
+                secim2.innerHTML = "paper"
+                player1 += "1";
+                right("kagit.png")
+            } else if (x == 2) {
+                secim2.innerHTML = "scissor";
+                right("makas.png")
+            }
+            skor();
+            skkor();
+        }
+
+
+        
+    </script>
+
+
+</body>
+</html>
